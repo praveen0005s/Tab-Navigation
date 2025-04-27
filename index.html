@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnovateTech Solutions</title>
+    <style>
+        /* === Base Styles === */
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --secondary: #10b981;
+            --secondary-hover: #059669;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --gray: #6b7280;
+            --light-gray: #e5e7eb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        section {
+            padding: 3rem 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0.25rem;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--secondary-hover);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* === Navbar Styles === */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            margin-right: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .burger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .burger div {
+            width: 25px;
+            height: 3px;
+            background-color: var(--dark);
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        /* === Hero Section === */
+        .hero {
+            padding: 10rem 1rem 5rem;
+            background: linear-gradient(135deg, #4f46e5 0%, #10b981 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards 0.3s;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards 0.5s;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards 0.7s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* === Tab Navigation === */
+        .tabs-container {
+            margin-top: 2rem;
+        }
+
+        .tabs-nav {
+            display: flex;
+            justify-content: center;
+            border-bottom: 2px solid var(--light-gray);
+            margin-bottom: 2rem;
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gray);
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            color: var(--primary);
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+        }
+
+        .tab-btn.active:after {
+            width: 100%;
+        }
+
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* === Services Section === */
+        .services {
+            background-color: white;
+            padding: 5rem 1rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 3px solid transparent;
+        }
+
+        .service-card:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card:hover:before {
+            width: 100%;
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* === About Us Section === */
+        .about {
+            background-color: var(--light);
+            padding: 5rem 1rem;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* === Team Section === */
+        .team {
+            background-color: white;
+            padding: 5rem 1rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .team-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 1.5rem;
+            border: 3px solid var(--light-gray);
+            transition: all 0.3s ease;
+        }
+
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .team-member:hover .team-photo {
+            border-color: var(--primary);
+        }
+
+        .team-member:hover .team-photo img {
+            transform: scale(1.1);
+        }
+
+        .team-member h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* === Testimonials === */
+        .testimonials {
+            background-color: var(--light);
+            padding: 5rem 1rem;
+        }
+
+        .testimonial-slider {
+            position: relative;
+            overflow: hidden;
+            padding: 2rem 0;
+        }
+
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .testimonial {
+            min-width: 100%;
+            padding: 0 1rem;
+        }
+
+        .testimonial-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            position: relative;
+        }
+
+        .testimonial-card:before {
+            content: '"';
+            position: absolute;
+            top: -30px;
+            left: 20px;
+            font-size: 5rem;
+            color: var(--primary);
+            opacity: 0.2;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1rem;
+        }
+
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            color: var(--gray);
+            margin-bottom: 0;
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .slider-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: white;
+            border: 1px solid var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slider-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* === Contact Section === */
+        .contact {
+            background-color: white;
+            padding: 5rem 1rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-info {
+            margin-bottom: 2rem;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-right: 1rem;
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 0.25rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        /* === Footer === */
+        .footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 1rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-company {
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #e5e7eb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .footer-subscribe input {
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* === Back to Top Button === */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* === Modal === */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            transform: translateY(50px);
+            transition: all 0.3s ease;
+        }
+
+        .modal.open .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--dark);
+        }
+
+        /* === Animation Classes === */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            animation: slideInRight 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* === Counter Section === */
+        .counter-section {
+            background: linear-gradient(135deg, #4f46e5 0%, #10b981 100%);
+            color: white;
+            padding: 5rem 1rem;
+            text-align: center;
+        }
+
+        .counter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .counter-item {
+            padding: 1.5rem;
+        }
+
+        .counter {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .counter-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* === Hover Effects === */
+        .hover-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hover-effect:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .hover-effect:hover:before {
+            left: 100%;
+        }
+
+        /* === Responsive Styles === */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 8rem 1rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                position: absolute;
+                right: 0;
+                top: 70px;
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                transform: translateX(100%);
+                transition: transform 0.5s ease;
+                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+                padding: 1rem 0;
+            }
+
+            .nav-links.active {
+                transform: translateX(0);
+            }
+
+            .nav-links li {
+                margin: 0.5rem 1rem;
+            }
+
+            .burger {
+                display: block;
+            }
+
+            .toggle .line1 {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .toggle .line2 {
+                opacity: 0;
+            }
+
+            .toggle .line3 {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .tab-btn {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .counter {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container navbar-container">
+            <a href="#" class="logo">
+                <span class="logo-icon">⚡</span>
+                InnovateTech
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#team" class="nav-link">Team</a></li>
+                <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Innovative Solutions for Your Digital Growth</h1>
+            <p>We empower businesses to thrive in the digital landscape with cutting-edge technology solutions that drive results and transform ideas into reality.</p>
+            <div class="hero-buttons">
+                <a href="#services" class="btn">Our Services</a>
+                <a href="#contact" class="btn btn-outline">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content with Tab Navigation -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Our Comprehensive Services</h2>
+                <p>Discover how we can help your business grow with our wide range of professional services</p>
+            </div>
+
+            <div class="tabs-container">
+                <div class="tabs-nav">
+                    <button class="tab-btn active" data-tab="technology">Technology Solutions</button>
+                    <button class="tab-btn" data-tab="consulting">Business Consulting</button>
+                </div>
+
+                <!-- Tab Content 1: Technology Solutions -->
+                <div class="tab-content active" id="technology">
+                    <div class="services-grid">
+                        <div class="service-card hover-effect fade-in-up">
+                            <div class="service-icon">💻</div>
+                            <h3>Web Development</h3>
+                            <p>Custom-built responsive websites and web applications that deliver exceptional user experiences across all devices.</p>
+                            <p>Our team of expert developers uses the latest technologies and frameworks to create scalable, high-performance solutions tailored to your specific business needs.</p>
+                            <a href="#" class="btn btn-outline modal-trigger" data-modal="web-modal">Learn More</a>
+                        </div>
+                        <div class="service-card hover-effect fade-in-up">
+                            <div class="service-icon">📱</div>
+                            <h3>Mobile App Development</h3>
+                            <p>Native and cross-platform mobile applications that engage users and drive business growth.</p>
+                            <p>From concept to launch, we handle every aspect of mobile app development, ensuring your app stands out in the crowded marketplace with intuitive interfaces and robust functionality.</p>
+                            <a href="#" class="btn btn-outline modal-trigger" data-modal="mobile-modal">Learn More</a>
+                        </div>
+                        <div class="service-card hover-effect fade-in-up">
+                            <div class="service-icon">🔒</div>
+                            <h3>Cybersecurity Solutions</h3>
+                            <p>Comprehensive security assessments and solutions to protect your business from evolving digital threats.</p>
+                            <p>Our security experts implement multi-layered defense strategies, including penetration testing, vulnerability assessments, and security audits to safeguard your valuable data and systems.</p>
+                            <a href="#" class="btn btn-outline modal-trigger" data-modal="security-modal">Learn More</a>
+                        </div>
+                        <div class="service-card hover-effect fade-in-up">
+                            <div class="service-icon">☁️</div>
+                            <h3>Cloud Solutions</h3>
+                            <p>Scalable cloud infrastructure and migration services to optimize operations and reduce costs.</p>
+                            <p>We help businesses leverage the power of cloud computing through strategic planning, implementation, and management of cloud solutions that enhance flexibility, reliability, and security.</p>
+                            <a href="#" class="btn btn-outline modal-trigger" data-modal="cloud-modal">Learn More</a>
+                        </div>
+                        <div class="service-card hover-effect fade-in-up">
+                            <div class="service-icon">🤖</div>
+                            <h3>AI & Machine Learning</h3>
+                            <p>Advanced AI solutions that transform data into actionable insights and automate complex processes.</p>
+                            <p>Our data scientists and AI engineers build custom machine learning models and intelligent systems that solve real business problems and create competitive advantages through predictive analytics and automation.</p>
+                            <a href="#" class="btn btn-outline modal-trigger" data-modal="ai-modal">Learn More</a>
+                        </div>
+                        <div class="service-card hover-effect fade-in-up">
+                            <div class="service-icon">📊</div>
+                            <h3>Data Analytics</h3>
+                            <p>Powerful data visualization and analytics solutions that drive informed business decisions.</p>
+                            <p>We transform raw data into meaningful insights through advanced analytics tools and techniques, helping you uncover patterns, trends, and opportunities that drive strategic growth and operational efficiency.</p>
+                            <a href="#" class="btn btn-outline modal-trigger" data-modal="data-modal">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content 2: Business Consulting -->
+                <div class="tab-content" id="consulting">
+                    <div class="services-grid">
+                        <div class="service-card hover-effect">
+                            <div class="service-icon">📈</div>
+                            <h3>Digital Strategy</h3>
+                            <p>Comprehensive digital transformation strategies that align technology with business objectives.</p>
+                            <p>Our strategic consultants work closely with your team to develop actionable roadmaps that leverage emerging technologies to drive growth, enhance customer experiences, and optimize operational efficiency.</p>
+                            <a href="#" class="btn btn-outline modal-trigger" data-modal="strategy-modal">Learn More</a>
+                        </div>
+                        <div class="service-card hover-effect">
+                            <div class="service-icon">🚀</div>
+                            <h3>Product Innovation</h3>
+                            <p>End-to-end product development services from ideation to market launch.</p>
+                            <p>We help businesses identify market opportunities, validate concepts, and develop innovative products that solve real problems and deliver exceptional value to customers, ensuring successful market entry and sustainable growth.</p>
+                            <a href="#" class="btn btn-outline modal-trigger" data-modal="product-modal">Learn More</a>
+                        </div>
+                        <div class="service-card hover-effect">
+                            <div class="service-icon">🔍</div>
+                            <h3>Market Research</h3>
+                            <p>Data-driven market analysis to identify opportunities and inform strategic decisions.</p>
+                            <p>Our research experts conduct thorough market assessments using both quantitative and qualitative methods to provide actionable insights about industry trends, competitor landscapes, and customer preferences.</p>
+                            <a href="#" class="btn btn-outline modal-trigger" data-modal="research-modal">Learn More</a>
+                        </div>
+                        <div class="service-card hover-effect">
+                            <div class="service-icon">💼</div>
+                            <h3>Business Process Optimization</h3>
+                            <p>Streamlined workflows and optimized processes that enhance efficiency and reduce costs.</p>
+                            <p>We identify bottlenecks and inefficiencies in your current operations, then implement targeted improvements that streamline workflows, automate routine tasks, and optimize resource allocation for maximum productivity.</p>
+                            <a href="#" class="btn btn-outline modal-trigger" data-modal="process-modal">Learn More</a>
+                        </div>
+                        <div class="service-card hover-effect">
+                            <div class="service-icon">🌐</div>
+                            <h3>Global Expansion</h3>
+                            <p>Strategic guidance for businesses looking to scale operations internationally.</p>
+                            <p>Our international expansion specialists provide comprehensive support for market entry, regulatory compliance, localization strategies, and cultural adaptation to ensure successful global growth with minimized risks.</p>
+                            <a href="#" class="btn btn-outline modal-trigger" data-modal="global-modal">Learn More</a>
+                        </div>
+                        <div class="service-card hover-effect">
+                            <div class="service-icon">📱</div>
+                            <h3>Digital Marketing</h3>
+                            <p>Results-driven marketing strategies that increase brand visibility and drive conversions.</p>
+                            <p>From SEO and content marketing to social media campaigns and paid advertising, our marketing experts develop integrated strategies that target your ideal customers and deliver measurable ROI across all digital channels.</p>
+                            <a href="#" class="btn btn-outline modal-trigger" data-modal="marketing-modal">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Counter Section -->
+    <section class="counter-section">
+        <div class="container">
+            <div class="counter-grid">
+                <div class="counter-item">
+                    <div class="counter" data-target="250">0</div>
+                    <div class="counter-title">Projects Completed</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter" data-target="120">0</div>
+                    <div class="counter-title">Happy Clients</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter" data-target="15">0</div>
+                    <div class="counter-title">Years of Experience</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter" data-target="45">0</div>
+                    <div class="counter-title">Team Members</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text fade-in-up">
+                    <h2>About InnovateTech Solutions</h2>
+                    <p>Founded in 2010, InnovateTech Solutions has grown from a small tech startup to a leading provider of comprehensive technology and business consulting services. Our mission is to empower organizations to harness the full potential of digital technologies and transform their operations for sustained growth and success.</p>
+                    <p>At InnovateTech, we believe that technology should serve as an enabler for business success, not a barrier. This philosophy guides our approach to every project, ensuring that our solutions are not just technically sound but also aligned with our clients' strategic objectives and business goals.</p>
+                    <p>Our team consists of experienced professionals with diverse backgrounds in software development, data science, cybersecurity, cloud computing, business strategy, and digital marketing. This multidisciplinary expertise allows us to tackle complex challenges from multiple perspectives and deliver holistic solutions that address both immediate needs and long-term objectives.</p>
+                    <p>What sets us apart is our commitment to building lasting partnerships with our clients. We don't just deliver solutions; we collaborate closely with your team, understand your unique challenges, and provide ongoing support to ensure sustainable success. Our client-centric approach has earned us a reputation for excellence and resulted in long-term relationships with organizations across various industries.</p>
+                    <div class="about-buttons">
+                        <a href="#team" class="btn">Meet Our Team</a>
+                        <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                    </div>
+                </div>
+                <div class="about-image slide-in-right">
+                    <img src="/api/placeholder/600/400" alt="InnovateTech Team">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Our Expert Team</h2>
+                <p>Meet the talented professionals behind our innovative solutions</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member fade-in-up">
+                    <div class="team-photo">
+                        <img src="/api/placeholder/200/200" alt="Team Member">
+                    </div>
+                    <h3>Sarah Johnson</h3>
+                    <p>Chief Executive Officer</p>
+                    <p>With over 20 years of experience in technology leadership, Sarah drives the strategic vision of InnovateTech Solutions.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">tw</a>
+                    </div>
+                </div>
+                <div class="team-member fade-in-up">
+                    <div class="team-photo">
+                        <img src="/api/placeholder/200/200" alt="Team Member">
+                    </div>
+                    <h3>Michael Chen</h3>
+                    <p>Chief Technology Officer</p>
+                    <p>Michael leads our technology initiatives, ensuring we stay at the cutting edge of innovation and technical excellence.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">gh</a>
+                    </div>
+                </div>
+                <div class="team-member fade-in-up">
+                    <div class="team-photo">
+                        <img src="/api/placeholder/200/200" alt="Team Member">
+                    </div>
+                    <h3>Amara Patel</h3>
+                    <p>Head of Business Strategy</p>
+                    <p>Amara brings strategic insight and business acumen to help our clients navigate complex digital transformations.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">tw</a>
+                    </div>
+                </div>
+                <div class="team-member fade-in-up">
+                    <div class="team-photo">
+                        <img src="/api/placeholder/200/200" alt="Team Member">
+                    </div>
+                    <h3>David Rodriguez</h3>
+                    <p>Lead Software Architect</p>
+                    <p>David oversees the development of robust, scalable software solutions that meet our clients' complex requirements.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">gh</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Client Testimonials</h2>
+                <p>What our clients say about working with us</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-track">
+                    <div class="testimonial">
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">"InnovateTech transformed our digital presence completely. Their team not only delivered a stunning website but also implemented a comprehensive digital strategy that increased our online conversions by 200%. Their expertise and commitment to our success made them feel like an extension of our team rather than an external vendor."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="/api/placeholder/60/60" alt="Client">
+                                </div>
+                                <div class="author-info">
+                                    <h4>Robert Chambers</h4>
+                                    <p>CEO, GrowthFusion Inc.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">"Working with InnovateTech on our cloud migration was the best decision we made. They handled the complex transition seamlessly, minimized downtime, and implemented security measures that exceeded industry standards. The improved performance and cost savings have been significant, and their ongoing support is exceptional."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="/api/placeholder/60/60" alt="Client">
+                                </div>
+                                <div class="author-info">
+                                    <h4>Jennifer Lee</h4>
+                                    <p>CTO, GlobalConnect</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">"The data analytics platform developed by InnovateTech revolutionized how we make decisions. Their team took the time to understand our specific needs and created customized dashboards that provide actionable insights. The predictive analytics features have helped us anticipate market trends and stay ahead of competition."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="/api/placeholder/60/60" alt="Client">
+                                </div>
+                                <div class="author-info">
+                                    <h4>Marcus Thompson</h4>
+                                    <p>Marketing Director, RetailNova</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-controls">
+                    <button class="slider-btn prev-btn">❮</button>
+                    <button class="slider-btn next-btn">❯</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Get in Touch</h2>
+                <p>Ready to transform your business? Contact us today!</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info fade-in-up">
+                    <h3>Contact Information</h3>
+                    <div class="contact-detail">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <p>123 Innovation Drive</p>
+                            <p>Tech Valley, CA 94103</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <p>info@innovatetech.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">🕙</div>
+                        <div>
+                            <p>Monday - Friday: 9AM - 6PM</p>
+                            <p>Saturday - Sunday: Closed</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form fade-in-up">
+                    <h3>Send Us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-company">
+                    <a href="#" class="footer-logo">
+                        <span class="logo-icon">⚡</span>
+                        InnovateTech
+                    </a>
+                    <p>Empowering businesses through innovative technology solutions and strategic consulting services.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">fb</a>
+                        <a href="#" class="social-link">tw</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">ig</a>
+                    </div>
+                </div>
+                <div class="footer-links-container">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#team">Our Team</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-container">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">Mobile App Development</a></li>
+                        <li><a href="#">Cloud Solutions</a></li>
+                        <li><a href="#">Cybersecurity</a></li>
+                        <li><a href="#">AI & Machine Learning</a></li>
+                        <li><a href="#">Digital Strategy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-subscribe">
+                    <h3>Subscribe to Our Newsletter</h3>
+                    <p>Stay updated with our latest news and insights</p>
+                    <form id="subscribeForm">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 InnovateTech Solutions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">↑</a>
+
+    <!-- Modals -->
+    <div class="modal" id="web-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Web Development</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div>
+                <p>Our web development services include:</p>
+                <ul>
+                    <li>Custom website design and development</li>
+                    <li>E-commerce solutions</li>
+                    <li>Content management systems</li>
+                    <li>Progressive web applications</li>
+                    <li>API development and integration</li>
+                    <li>Website maintenance and support</li>
+                </ul>
+                <p>We use modern frameworks and technologies like React, Angular, Vue.js, Node.js, and Laravel to build scalable, high-performance web solutions that drive business growth.</p>
+                <h4>Our Development Process:</h4>
+                <ol>
+                    <li>Discovery and Requirements Analysis</li>
+                    <li>UX/UI Design and Prototyping</li>
+                    <li>Development and Testing</li>
+                    <li>Deployment and Launch</li>
+                    <li>Ongoing Support and Optimization</li>
+                </ol>
+                <p>Contact us today to discuss your web development project!</p>
+                <a href="#contact" class="btn modal-close-btn">Get Started</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add more modals for other services here -->
+
+    <script>
+        // Navigation Toggle
+        const burger = document.querySelector('.burger');
+        const nav = document.querySelector('.nav-links');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        burger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            burger.classList.toggle('toggle');
+        });
+
+        // Smooth Scrolling
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+                
+                if (nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                    burger.classList.remove('toggle');
+                }
+            });
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Tab Navigation
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons and contents
+                tabBtns.forEach(item => item.classList.remove('active'));
+                tabContents.forEach(item => item.classList.remove('active'));
+                
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = btn.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Modal Functionality
+        const modalTriggers = document.querySelectorAll('.modal-trigger');
+        const modalCloseBtns = document.querySelectorAll('.modal-close, .modal-close-btn');
+
+        modalTriggers.forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                const modalId = trigger.getAttribute('data-modal');
+                document.getElementById(modalId).classList.add('open');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        modalCloseBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const modal = btn.closest('.modal');
+                modal.classList.remove('open');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Close modal when clicking outside
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('open');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Escape key to close modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const openModal = document.querySelector('.modal.open');
+                if (openModal) {
+                    openModal.classList.remove('open');
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        });
+
+        // Form Submission with Animation
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Simulate form submission
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                submitBtn.innerHTML = 'Sending...';
+                submitBtn.disabled = true;
+                
+                setTimeout(() => {
+                    contactForm.innerHTML = '<div class="success-message"><div style="font-size: 3rem; margin-bottom: 1rem;">✓</div><h3>Thank you!</h3><p>Your message has been sent successfully. We\'ll get back to you shortly.</p></div>';
+                }, 1500);
+            });
+        }
+
+        // Newsletter Subscription
+        const subscribeForm = document.getElementById('subscribeForm');
+        if (subscribeForm) {
+            subscribeForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const emailInput = subscribeForm.querySelector('input[type="email"]');
+                const submitBtn = subscribeForm.querySelector('button');
+                
+                submitBtn.innerHTML = 'Subscribing...';
+                submitBtn.disabled = true;
+                
+                setTimeout(() => {
+                    subscribeForm.innerHTML = '<p class="success-message">Thank you for subscribing to our newsletter!</p>';
+                }, 1500);
+            });
+        }
+
+        // Counters Animation
+        const counters = document.querySelectorAll('.counter');
+        const counterSection = document.querySelector('.counter-section');
+        let counted = false;
+
+        function startCounting() {
+            if (isInViewport(counterSection) && !counted) {
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    const duration = 2000; // 2 seconds
+                    const increment = target / (duration / 16); // 60 FPS
+                    
+                    let count = 0;
+                    const updateCount = () => {
+                        count += increment;
+                        if (count < target) {
+                            counter.innerText = Math.ceil(count);
+                            requestAnimationFrame(updateCount);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    
+                    updateCount();
+                });
+                counted = true;
+            }
+        }
+
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.bottom >= 0
+            );
+        }
+
+        // Check if counter section is in viewport on scroll
+        window.addEventListener('scroll', startCounting);
+        // Also check on page load
+        window.addEventListener('load', startCounting);
+
+        // Animate elements when they come into view
+        const animateElements = document.querySelectorAll('.fade-in, .fade-in-up, .slide-in-right');
+
+        function checkScroll() {
+            animateElements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight * 0.85;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.animation = element.classList.contains('fade-in') ? 'fadeIn 1s forwards' : 
+                                              element.classList.contains('fade-in-up') ? 'fadeInUp 1s forwards' : 
+                                              'slideInRight 1s forwards';
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
+
+        // Testimonial Slider
+        const testimonialTrack = document.querySelector('.testimonial-track');
+        const testimonials = document.querySelectorAll('.testimonial');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        let currentIndex = 0;
+
+        // Set initial width
+        function setupTestimonialSlider() {
+            if (testimonialTrack) {
+                testimonials.forEach(testimonial => {
+                    testimonial.style.minWidth = `${testimonialTrack.clientWidth}px`;
+                });
+            }
+        }
+
+        window.addEventListener('load', setupTestimonialSlider);
+        window.addEventListener('resize', setupTestimonialSlider);
+
+        // Slider controls
+        if (prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateSliderPosition();
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentIndex < testimonials.length - 1) {
+                    currentIndex++;
+                    updateSliderPosition();
+                }
+            });
+        }
+
+        function updateSliderPosition() {
+            if (testimonialTrack) {
+                testimonialTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+        }
+
+        // Auto play testimonials
+        let testimonialInterval;
+
+        function startTestimonialAutoplay() {
+            testimonialInterval = setInterval(() => {
+                if (currentIndex < testimonials.length - 1) {
+                    currentIndex++;
+                } else {
+                    currentIndex = 0;
+                }
+                updateSliderPosition();
+            }, 5000);
+        }
+
+        function stopTestimonialAutoplay() {
+            clearInterval(testimonialInterval);
+        }
+
+        if (testimonialTrack) {
+            startTestimonialAutoplay();
+            
+            testimonialTrack.addEventListener('mouseenter', stopTestimonialAutoplay);
+            testimonialTrack.addEventListener('mouseleave', startTestimonialAutoplay);
+        }
+
+        // Add hover effect animation for service cards
+        const hoverEffects = document.querySelectorAll('.hover-effect');
+        hoverEffects.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                element.style.transform = 'translateY(-10px)';
+                element.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.1)';
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                element.style.transform = 'translateY(0)';
+                element.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+            });
+        });
+    </script>
+</body>
+</html>
